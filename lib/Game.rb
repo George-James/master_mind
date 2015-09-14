@@ -1,6 +1,10 @@
+require_relative "Computer.rb"
+require_relative "Colors.rb"
+require_relative "Player.rb"
+
 
 class Game
-  Colors = {R: "Red", B: "Blue", G: "Green", Y: "Yellow", V: "Violet", P: "Purple"}
+
   attr_accessor :input, :output
 
   def initialize(input, output)
@@ -23,8 +27,7 @@ class Game
 private
   def process_command (input)
     # Get the first character of the user input and convert to downcase
-    command, *args = input.split /\s/
-    command = command.downcase
+    command = input.downcase
 
     if command == "play" || command == "p"
       play()
@@ -37,9 +40,23 @@ private
     end
   end
 
-  def play
-    @output.display_select_level_message
-    input = @input.get_command
 
+
+
+
+# This is where the magic happens
+  def play
+    puts "So you would like to play!"
+    puts "Start by telling me your name: "
+    player_name = gets.chomp
+    player = Player.new(player_name)
+
+    @output.display_select_level_message
+    input = @input.get_command.to_i
+
+    computer = Computer.new(Colors::LIST, input, player)
+    colors = computer.serve()
+
+    puts ""
   end
 end
