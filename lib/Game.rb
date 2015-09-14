@@ -20,7 +20,7 @@ class Game
     process_command(input)
   end
 
-
+private
   def process_command (input)
     # Get the first character of the user input and convert to downcase
     command, *args = input.split /\s/
@@ -40,6 +40,6 @@ class Game
   def play
     @output.display_select_level_message
     input = @input.get_command
-    
+
   end
 end
