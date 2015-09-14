@@ -38,4 +38,15 @@ class Output
     gets
     puts "====================================================================================================="
   end
+
+  def self.display_play_instruction(colors_key, colors_value)
+    puts "\n"
+    puts "You are to guess the sequence in which these colors appeared \n"
+    print "e.g: "
+    colors_key.each{|x| print x }
+    print " for "
+    colors_value.each{|x| print "#{x}, " }
+    print "\n"
+    puts "You have 12 guesses to get these colors or you lose the game. Use (q)uit at any time to end the game.\n Ready to play? \nWhat's your guess?"
+  end
 end
