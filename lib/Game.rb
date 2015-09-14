@@ -1,7 +1,7 @@
 require_relative "Computer.rb"
 require_relative "Colors.rb"
 require_relative "Player.rb"
-
+require_relative "Level.rb"
 
 class Game
 
@@ -49,12 +49,17 @@ private
     puts "So you would like to play!"
     puts "Start by telling me your name: "
     player_name = gets.chomp
-    player = Player.new(player_name)
 
+    # Ask User to Select Level and save in user_level variable
     @output.display_select_level_message
     input = @input.get_command.to_i
+    user_level = Level.new(input)
 
-    computer = Computer.new(Colors::LIST, input, player)
+    # Create Player instance  and save name and level
+    player = Player.new(player_name, user_level)
+
+    # Pass player to computer to serve
+    computer = Computer.new(player)
     colors = computer.serve()
 
     puts ""
