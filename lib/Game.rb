@@ -1,4 +1,4 @@
-require_relative "Computer.rb"
+require_relative "Evaluator.rb"
 require_relative "Colors.rb"
 require_relative "Player.rb"
 require_relative "Level.rb"
@@ -25,9 +25,10 @@ class Game
   end
 
 private
+# Processes User Input to determine user action, to play game, read instruction or see the about game
   def process_command (input)
     # Get the first character of the user input and convert to downcase
-    command = input.downcase
+    command = input.downcase ||= "q"
 
     if command == "play" || command == "p"
       play()
@@ -39,10 +40,6 @@ private
       @output.exit_game
     end
   end
-
-
-
-
 
 # This is where the magic happens
   def play
@@ -59,9 +56,54 @@ private
     player = Player.new(player_name, user_level)
 
     # Pass player to computer to serve
-    computer = Computer.new(player)
-    colors = computer.serve()
+    # computer = Computer.new(player)
+    # colors = computer.serve()
+
+    puts "Hello #{player.name}! I have generated a beginner sequence with #{player.level.get_num_characters} characters made up of:"
+    colors = Colors::Colors.generate_colors(player.level.get_num_colors)
+
+    colors.each{|key, color| print "(#{key}): #{color}, "}
 
     puts ""
+
+    color_keys = Colors::Colors.get_color_keys(colors)
+    color_values = Colors::Colors.get_color_values(colors)
+
+    Output.display_play_instruction(color_keys, color_values)
+
+    computer_guess = color_keys.shuffle
+
+
+    trials = 0
+    # POINT WHERE ACTUAL USER GUESSING OCCURS
+    12.times do
+      trials +=1
+      @input.get_command
+      user_guess = @input.user_command.to_s.downcase ||= ""
+
+
+      # Evaluate if user wants to quit game
+      if (user_guess == 'q' || user_guess =='quit')
+        puts "Alrighty! cleaning up ..."
+        sleep(1)
+        break
+      end
+
+      user_guess = user_guess.split("").map{|x| x.upcase }
+      # Evaluate guesses
+
+      if(user_guess == computer_guess)
+        puts "Insane! you are a Mastermind, you got the right sequence in #{trials} trial(s)"
+        puts "Please play again?"
+        break
+      end
+
+      zipped = user_guess.zip(computer_guess)
+      exacts = Evaluator.exacts(zipped)
+      partials = Evaluator.partials(zipped)
+
+      puts "You have #{exacts} exacts and #{partials} partials, keep on trying! you still have #{trials} trials left"
+
+    end
   end
 end
