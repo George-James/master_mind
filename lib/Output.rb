@@ -3,7 +3,7 @@ require 'colorize'
 class Output
   def self.animate_prompt(output)
     output.split("").each do |x|
-      # sleep(0.05)
+      sleep(0.05)
       print x
     end
     puts ""
