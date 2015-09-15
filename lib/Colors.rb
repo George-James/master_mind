@@ -20,7 +20,11 @@ module Colors
 
 
       def self.generate_colors(amount)
-        LIST.to_a.sample(amount)
+        # LIST.to_a.sample(amount)
+        sample = []
+        list = LIST.to_a
+        amount.times{ sample << list[Random.rand(list.length-1)] }
+        sample
       end
 
       def self.get_color(key)
