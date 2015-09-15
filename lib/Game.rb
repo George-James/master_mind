@@ -28,7 +28,7 @@ private
 # Processes User Input to determine user action, to play game, read instruction or see the about game
   def process_command (input)
     # Get the first character of the user input and convert to downcase
-    command = input.downcase ||= "q"
+    command = input.to_s.downcase ||= "q"
 
     if command == "play" || command == "p"
       play()
