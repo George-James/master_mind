@@ -43,12 +43,11 @@ private
 
 # This is where the magic happens
   def play
-    puts "So you would like to play!"
-    puts "Start by telling me your name: "
+    Output.write(Messages::GET_NAME.bold)
     player_name = gets.chomp
 
     # Ask User to Select Level and save in user_level variable
-    @output.display_select_level_message
+    Output.write(Messages::SELECT_LEVEL.bold)
     input = @input.get_command.to_i
     user_level = Level.new(input)
 
@@ -56,15 +55,10 @@ private
     player = Player.new(player_name, user_level)
 
     # Pass player to computer to serve
-    # computer = Computer.new(player)
-    # colors = computer.serve()
-
-    puts "Hello #{player.name}! I have generated a beginner sequence with #{player.level.get_num_characters} characters made up of:"
+    Output.write(Messages::WELCOME_USER, [player.name, player.level.get_num_characters])
     colors = Colors::Colors.generate_colors(player.level.get_num_colors)
 
-    colors.each{|key, color| print "(#{key}): #{color}, "}
-
-    puts ""
+    colors.each{|key, color| Output.write("(#{key}): #{color}, ")}
 
     color_keys = Colors::Colors.get_color_keys(colors)
     color_values = Colors::Colors.get_color_values(colors)
@@ -84,26 +78,31 @@ private
 
       # Evaluate if user wants to quit game
       if (user_guess == 'q' || user_guess =='quit')
-        puts "Alrighty! cleaning up ..."
+        Output.write_line(Messages::QUIT_GAME)
         sleep(1)
         break
+      elsif(user_guess == 'c' || user_guess == 'cheats')
+        Output.write_line(Messages::CHEATS, [computer_guess.join("")])
+        next
       end
 
       user_guess = user_guess.split("").map{|x| x.upcase }
       # Evaluate guesses
 
       if(user_guess == computer_guess)
-        puts "Insane! you are a Mastermind, you got the right sequence in #{12-trials} trial(s)"
-        puts "Please play again?"
+        Output.write_line(Messages::USER_WIN, [trials])
         break
+      end
+
+      if trials == 12
+        "Sorry, you fail the correct sequence is #{computer_guess.join("")}"
+        break;
       end
 
       zipped = user_guess.zip(computer_guess)
       exacts = Evaluator.exacts(zipped)
       partials = Evaluator.partials(zipped)
-
-      puts "You have #{exacts} exacts and #{partials} partials, keep on trying! you still have #{trials} trials left"
-
+      Output.write_line(Messages::USER_LOOSE, [exacts, partials, 12-trials])
     end
   end
 end
