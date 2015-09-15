@@ -23,6 +23,10 @@ module Colors
         LIST.to_a.sample(amount)
       end
 
+      def self.get_color(key)
+        LIST[key]
+      end
+
       def self.get_color_keys (colors)
         keys_array = []
         colors.each{|key, color| keys_array << key.to_s;}
