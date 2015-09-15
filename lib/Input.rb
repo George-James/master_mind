@@ -1,5 +1,5 @@
 class Input
-  attr_reader :user_command
+  attr_accessor :user_command
   def initialize
 
   end
