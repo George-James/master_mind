@@ -6,8 +6,15 @@ class Evaluator
   def self.partials(zipped_array)
     zipped_array.select!{|x| x[0] != x[1]}
     comp, user = zipped_array.transpose
-
-    partials = comp&user
-    partials.count
+    partials = []
+    if(user !=nil)
+      user.each do |a|
+            if comp.include? a
+              comp.delete_at(comp.index(a))
+              partials << a
+            end
+      end
+    end
+    partials.size
   end
 end
