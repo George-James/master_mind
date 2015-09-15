@@ -93,7 +93,7 @@ private
       # Evaluate guesses
 
       if(user_guess == computer_guess)
-        puts "Insane! you are a Mastermind, you got the right sequence in #{trials} trial(s)"
+        puts "Insane! you are a Mastermind, you got the right sequence in #{12-trials} trial(s)"
         puts "Please play again?"
         break
       end
