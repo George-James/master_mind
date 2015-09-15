@@ -4,7 +4,9 @@ class Evaluator
   end
 
   def self.partials(zipped_array)
+    # Remove all the exact match
     zipped_array.select!{|x| x[0] != x[1]}
+    # Seperate computer from user
     comp, user = zipped_array.transpose
     partials = []
     if(user !=nil)
