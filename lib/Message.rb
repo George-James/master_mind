@@ -9,8 +9,10 @@ module Messages
                   "Enter (1) for Beginner,\nEnter (2) for Intermediate,\nEnter (3) for Advanced.\n"\
                   "================================================================\n"
 
-  USER_WIN = "Insane! you are a Mastermind, you got the right sequence in %s trial(s) \nPlease play again?"
-  USER_LOOSE = "You have %s exacts and %s partials, keep on trying! you still have %s trials left"
+  USER_WIN = "Insane! you are a Mastermind, you got the right sequence in %s trial(s) and your time is %s\nPlease play again?"
+  WRONG_GUESS = "You have %s exacts and %s partials, keep on trying! you still have %s trials left"
+  USER_LOSS = "Sorry, you fail the correct sequence is %s"
+  BEST_SCORE = "%s:\t%s solved %s in %s guesses over %s \n"
 
   CHEATS = "Shhhh! do not tell anyone: %s"
 
@@ -33,7 +35,7 @@ module Messages
   PRESS_RETURN =    "Press enter to return\n"\
                     "===============================================================\n"
 
-  CONSOLE_SEPERATOR = "===============================================================\n"
+  CONSOLE_SEPERATOR = "\n===============================================================\n"
 
   ABOUT_GAME = "This game was developed as a requirement to getting into Andela\n"
 
