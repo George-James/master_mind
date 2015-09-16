@@ -1,56 +1,22 @@
-attr_accessor :input, :output
+require_relative "lib/FileIO.rb"
+require_relative "lib/Player.rb"
+require_relative "lib/Level.rb"
+require_relative "lib/Message"
+require_relative "lib/Output"
 
-def initialize(input, output)
-  @input = input.new
-  @output = output
-end
+file = FileIO.new("data/game_log.json")
 
-def start
-  # Start the user with message on ouput
-  output.start_message
-  # Get  user input to determine action
-  process_command(@input.get_command)
-  # Play Game process_command
-  play_game
-end
+ players_list = file.read
+list =  Player.get_players(players_list, :Advanced.to_s)
+new_data = Player.compare_players(list, ["James George Okpe", "BlackBerry", 8, 2])
+players_list["Advanced"] = new_data
+# new_data = Player.compare_players(list, ["James George Okpe", "BlackBerry", 8, 2])
 
-private
-def process_command (command)
-  case command.downcase
-    when /^play$/i
-      play_game
-    when /^instruction$/i
-      instructions
-    when /^about$/i
-      about_developer
-    when /^quit$/i
-      quit
-    else
-      invalid_command
-    end
-end
+# file.write( players_list)
 
-def play_game
-  msg = "To start the game select a level you would like to play:
-    Enter (1) for Beginner,
-    Enter (2) for Intermediate,
-    Enter (3) for Advanced."
-    @output.display_message(msg)
-end
-
-
-def quit
-  exit
-end
-
-def instructions
-  puts "\ngame instructions\n"
-end
-
-def about_developer
-  puts "\nabout developer\n"
-end
-
-def invalid_command
-  puts "\ninvalid command\n".red
-end
+# list.each_with_index do | player, i|
+#   Output.write(Messages::BEST_SCORE, [i+1, player[0], player[1], player[2], player[3], player[1]])
+# end
+#
+# level = Level.new(1)
+# puts level.get_level

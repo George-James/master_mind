@@ -3,6 +3,7 @@ require_relative "Colors.rb"
 require_relative "Player.rb"
 require_relative "Level.rb"
 require_relative "FileIO"
+require "pry"
 
 class Game
 
@@ -112,12 +113,16 @@ private
 
         # Pass the file data to get_players function to convert it to more useable array
         # Collecting scores from only players in the same level as current player
+        # p players_hash
+        # p user_level
         level_players_list = Player.get_players(players_hash, user_level.get_level.to_s)
 
         # user Player.compare_players to determine if current user has beaten any previous set record
         # If user has a better score add the user data to data and use the return of
         # Player.compare_players to replace score of previous users at same level as current user
-        players_hash[user_level.get_level.to_s] = Player.compare_players(level_players_list, [player.name, computer_guess.join(""), trials, total_time.round(4)])
+        
+        players_hash[user_level.get_level.to_s] =
+            Player.compare_players(players_hash, level_players_list, [player.name, computer_guess.join(""), trials, total_time.round(4)])
 
         # Write the new player record to File
         @file.write(players_hash)
@@ -130,7 +135,7 @@ private
         # count = 1;
         level_players_list.each_with_index do | player, i|
           # Format the total_time variable to e.g 4m10s
-          total_time = player[3]
+          total_time = player[3].to_i
           if(total_time > 60)
             total_time = "#{total_time/60}m#{(total_time%60).to_i}s"
           else
@@ -138,6 +143,7 @@ private
           end
           Output.write(Messages::BEST_SCORE, [i+1, player[0], player[1], player[2], total_time, player[1]])
         end
+
         break
       end
 
