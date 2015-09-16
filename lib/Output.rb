@@ -1,5 +1,6 @@
 require 'colorize'
 require_relative "Message.rb"
+require_relative "FileIO"
 
 class Output
   def self.animate_prompt(output)
@@ -31,6 +32,8 @@ class Output
     puts Messages::PRESS_RETURN.green.bold
     gets
     puts Messages::CONSOLE_SEPERATOR.bold
+
+
   end
 
   def self.display_play_instruction(colors_key, colors_value)
@@ -47,5 +50,9 @@ class Output
 
   def self.write_line(message, args = [])
     puts (message % args).bold
+  end
+
+  def self.write_top_ten(list)
+    
   end
 end
