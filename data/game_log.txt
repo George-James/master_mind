@@ -1,0 +1,42 @@
+{
+  "Advanced": [
+    {
+      "name": "James George Okpe",
+      "solved": "BRGG",
+      "count": "8",
+      "time": "4m8s"
+    },
+    {
+      "name": "Jeff Way",
+      "solved": "BBBB",
+      "count": "5",
+      "time": "2m1s"
+    },
+    {
+      "name": "Jorge",
+      "solved": "GGBB",
+      "count": "12",
+      "time": "5m12s"
+    },
+    {
+      "name": "Jorge",
+      "solved": "GGCC",
+      "count": "11",
+      "time": "4m12s"
+    }
+  ],
+  "Beginner": [
+    {
+      "name": "Jorge",
+      "solved": "GGBB",
+      "count": "12",
+      "time": "5m12s"
+    },
+    {
+      "name": "Fred Quimby",
+      "solved": "FFFF",
+      "count": "1",
+      "time": "1m12s"
+    }
+  ]
+}
