@@ -9,13 +9,13 @@ class Level
     level_disp = ""
     case @level
     when 1
-      level_disp = "One"
+      level_disp = :Beginner
     when 2
-      level_disp = "Two"
+      level_disp = :Intermediate
     when 3
-      level_disp = "Three"
+      level_disp = :Advanced
     else
-      level_disp = "One"
+      level_disp = :Beginner
     end
     level_disp
   end
