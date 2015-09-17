@@ -19,4 +19,12 @@ class Evaluator
     end
     partials.size
   end
+
+  def self.format_time(total_time)
+    if(total_time > 60)
+      total_time = "#{total_time/60}m#{(total_time%60).to_i}s"
+    else
+      total_time ="#{total_time.to_i}s"
+    end
+  end
 end

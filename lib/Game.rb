@@ -107,7 +107,7 @@ private
 
       # Check to see if user wins, if true compare with top ten, if within range add
       if(user_guess == computer_guess)
-        total_time = Time.now - start_time
+        total_time = Evaluator.format_time(Time.now - start_time)
         # Read best top ten players file,
         players_hash  = @file.read
 
@@ -120,9 +120,9 @@ private
         # user Player.compare_players to determine if current user has beaten any previous set record
         # If user has a better score add the user data to data and use the return of
         # Player.compare_players to replace score of previous users at same level as current user
-        
+
         players_hash[user_level.get_level.to_s] =
-            Player.compare_players(players_hash, level_players_list, [player.name, computer_guess.join(""), trials, total_time.round(4)])
+            Player.compare_players(players_hash, level_players_list, [player.name, computer_guess.join(""), trials, total_time])
 
         # Write the new player record to File
         @file.write(players_hash)
@@ -130,17 +130,12 @@ private
         # Output winners Message to user
         Output.write_line(Messages::USER_WIN, [trials, total_time])
 
-
         # Loop through best scores list and display
         # count = 1;
         level_players_list.each_with_index do | player, i|
           # Format the total_time variable to e.g 4m10s
-          total_time = player[3].to_i
-          if(total_time > 60)
-            total_time = "#{total_time/60}m#{(total_time%60).to_i}s"
-          else
-            total_time ="#{total_time.to_i}s"
-          end
+          total_time = Evaluator.format_time(player[3].to_i)
+
           Output.write(Messages::BEST_SCORE, [i+1, player[0], player[1], player[2], total_time, player[1]])
         end
 

@@ -1,42 +1,68 @@
 {
   "Advanced": [
     {
-      "name": "James George Okpe",
+      "name": "Leo KasParov",
       "solved": "BRGG",
-      "count": "8",
-      "time": "4m8s"
+      "count": 8,
+      "time": 41
     },
     {
-      "name": "Jeff Way",
-      "solved": "BBBB",
-      "count": "5",
-      "time": "2m1s"
+      "name": "Chibuke Ndu",
+      "solved": "BVVB",
+      "count": 8,
+      "time": 42
     },
     {
-      "name": "Jorge",
+      "name": "Yinka Jegede",
       "solved": "GGBB",
-      "count": "12",
-      "time": "5m12s"
+      "count": 8,
+      "time": 42.5
     },
     {
-      "name": "Jorge",
+      "name": "Salami Baba",
       "solved": "GGCC",
-      "count": "11",
-      "time": "4m12s"
+      "count": 11,
+      "time": 50
+    }
+  ],
+  "Intermediate": [
+    {
+      "name": "Vivian Onars",
+      "solved": "BRYG",
+      "count": 6,
+      "time": 4
+    },
+    {
+      "name": "Dorcas Bako",
+      "solved": "BOBO",
+      "count": 6,
+      "time": 5
+    },
+    {
+      "name": "Friday John",
+      "solved": "GGBB",
+      "count": 7,
+      "time": 5.12
+    },
+    {
+      "name": "Jorge Wendy",
+      "solved": "GGCC",
+      "count": 8,
+      "time": 4
     }
   ],
   "Beginner": [
     {
-      "name": "Jorge",
-      "solved": "GGBB",
-      "count": "12",
-      "time": "5m12s"
+      "name": "Jorge Wendy",
+      "solved": "GGFB",
+      "count": 3,
+      "time": 5"
     },
     {
       "name": "Fred Quimby",
       "solved": "FFFF",
-      "count": "1",
-      "time": "1m12s"
+      "count": 3,
+      "time": 6
     }
   ]
 }
